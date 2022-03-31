@@ -1,16 +1,55 @@
 package test;
 
+import main.BalancedBrackets;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class BalancedBracketsTest {
-
-    //TODO: add tests here
+    // expected true results
     @Test
-    public void emptyTest() {
-        assertEquals(true, true);
+    public void onlyBracketsReturnsTrue() {
+        assertTrue(BalancedBrackets.hasBalancedBrackets("[]"));
     }
 
+    @Test
+    public void stringWithoutBracketsReturnsTrue() {
+        assertTrue(BalancedBrackets.hasBalancedBrackets("LaunchCode"));
+    }
 
+    @Test
+    public void stringWithBracketsAroundCharsReturnsTrue() {
+        assertTrue(BalancedBrackets.hasBalancedBrackets("Launch[Code]"));
+    }
+
+    @Test
+    public void bracketsInFrontOfStringReturnsTrue() {
+        assertTrue(BalancedBrackets.hasBalancedBrackets("[]LaunchCode"));
+    }
+
+    @Test
+    public void emptyStringReturnsTrue() {
+        assertTrue(BalancedBrackets.hasBalancedBrackets(""));
+    }
+
+    // expected false results
+    @Test
+    public void singleBracketBeforeStringReturnsFalse() {
+        assertFalse(BalancedBrackets.hasBalancedBrackets("[LaunchCode"));
+    }
+
+    @Test
+    public void wrongOrderBracketsReturnsFalse() {
+        assertFalse(BalancedBrackets.hasBalancedBrackets("Launch]Code["));
+    }
+
+    @Test
+    public void leftReturnsFalse() {
+        assertFalse(BalancedBrackets.hasBalancedBrackets("["));
+    }
+
+    @Test
+    public void oppositeFacingBracketsReturnFalse() {
+        assertFalse(BalancedBrackets.hasBalancedBrackets("]["));
+    }
 }
