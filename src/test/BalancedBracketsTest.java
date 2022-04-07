@@ -32,6 +32,16 @@ public class BalancedBracketsTest {
         assertTrue(BalancedBrackets.hasBalancedBrackets(""));
     }
 
+    @Test
+    public void nestedBracketsReturnsTrue() {
+        assertTrue(BalancedBrackets.hasBalancedBrackets("[[LaunchCode]]"));
+    }
+
+    @Test
+    public void twoBracketPairsReturnsTrue() {
+        assertTrue(BalancedBrackets.hasBalancedBrackets("[]LaunchCode[]"));
+    }
+
     // expected false results
     @Test
     public void singleBracketBeforeStringReturnsFalse() {
@@ -51,5 +61,15 @@ public class BalancedBracketsTest {
     @Test
     public void oppositeFacingBracketsReturnFalse() {
         assertFalse(BalancedBrackets.hasBalancedBrackets("]["));
+    }
+
+    @Test
+    public void oddBracketsLeftMismatchedReturnsFalse() {
+        assertFalse(BalancedBrackets.hasBalancedBrackets("[LaunchCode[]"));
+    }
+
+    @Test
+    public void oddBracketsRightMismatchedReturnsFalse() {
+        assertFalse(BalancedBrackets.hasBalancedBrackets("]LaunchCode[]"));
     }
 }
